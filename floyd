@@ -1,64 +1,76 @@
 #include<stdio.h>
 #include<conio.h>
 int min(int,int);
-void floyds(int p[10][10],int n)
+
+void floyd(int a[10][10],int n)
 {
- int i,j,k;
- for(k=1;k<=n;k++)
-  for(i=1;i<=n;i++)
-   for(j=1;j<=n;j++)
-    if(i==j)
-     p[i][j]=0;
-    else
-     p[i][j]=min(p[i][j],p[i][k]+p[k][j]);
+int d[10][10],i,j,k;
+for(i=1;i<=n;i++)
+{
+  for(j=1;j<=n;j++)
+  {
+   d[i][j]=a[i][j];
+  }
 }
+
+for(k=1;k<=n;k++)
+{
+ for(i=1;i<=n;i++)
+ {
+   for(j=1;j<=n;j++)
+   {
+    d[i][j]=min(d[i][j],d[i][k]+d[k][j]);
+   }
+ }
+}
+
+printf("\nthe distance matrix\n");
+for(i=1;i<=n;i++)
+{
+ for(j=1;j<=n;j++)
+ {
+  printf("%d\t",d[i][j]);
+ }
+printf("\n");
+}
+}
+
 int min(int a,int b)
 {
  if(a<b)
-  return(a);
+  return a;
  else
-  return(b);
+  return b;
 }
+
 void main()
 {
- int p[10][10],w,n,e,u,v,i,j;;
- clrscr();
- printf("\n Enter the number of vertices:");
- scanf("%d",&n);
- printf("\n Enter the number of edges:\n");
- scanf("%d",&e);
- for(i=1;i<=n;i++)
+int n,a[10][10],i,j;
+printf("enter no of nodes\n");
+scanf("%d",&n);
+printf("enter the weight matrix\n");
+for(i=1;i<=n;i++)
+{
+ for(j=1;j<=n;j++)
  {
-  for(j=1;j<=n;j++)
-   p[i][j]=999;
+  scanf("%d",&a[i][j]);
  }
- for(i=1;i<=e;i++)
- {
-  printf("\n Enter the end vertices of edge%d with its weight \n",i);
-  scanf("%d%d%d",&u,&v,&w);
-  p[u][v]=w;
- }
- printf("\n Matrix of input data:\n");
- for(i=1;i<=n;i++)
- {
-  for(j=1;j<=n;j++)
-   printf("%d \t",p[i][j]);
-  printf("\n");
- }
- floyds(p,n);
- printf("\n Transitive closure:\n");
- for(i=1;i<=n;i++)
- {
-  for(j=1;j<=n;j++)
-   printf("%d \t",p[i][j]);
-  printf("\n");
- }
- printf("\n The shortest paths are:\n");
- for(i=1;i<=n;i++)
-  for(j=1;j<=n;j++)
-  {
-   if(i!=j)
-    printf("\n <%d,%d>=%d",i,j,p[i][j]);
-  }
- getch();
 }
+floyd(a,n);
+getch();
+}
+
+Output:
+Enter no. of vertices:
+4
+Enter the weight matrix
+0		999		3		999
+2		0		999		999
+999	7		0		1
+6		999		999		0
+
+The distance matrix:
+0	10	3	4
+2	0	5	6
+7	7	0	1
+6	16	9	0	
