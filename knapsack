@@ -73,3 +73,19 @@ scanf("%d",&m);
 knapsack(m,n,w,p);
 getch();
 }
+
+Output:
+
+Enter no. of items:
+5
+Enter the weights
+2	5	2	6	9
+Enter profits:
+50	40	20	60	55
+
+Enter Capacity: 6
+
+Optimal set of items:
+1	3
+Total profit = 70
+
