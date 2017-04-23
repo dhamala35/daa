@@ -47,3 +47,17 @@ cost[a][b]=cost[a][b]=999;
 printf("\nmin_cost=%d\n",min_cost);
 getch();
 }
+
+Output:
+Enter no of vertices: 4
+Enter the cost matrix:
+0 1 5 2
+1 0 0 0
+5 0 0 3
+2 0 3 0
+Edges of spanning tree are:
+Edge 1->2 = 1
+Edge 1->4 = 2
+Edge 3->4 = 3
+
+Min cost = 6
