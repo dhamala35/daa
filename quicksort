@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int partition(int a[],int l,int u)
+{
+int v,i,j,temp;
+v=a[u];
+i=l-1;
+for(j=l;j<=u-1;j++)
+{
+if(a[j]<=v)
+{
+i++;
+temp=a[i];
+a[i]=a[j];
+a[j]=temp;
+}
+}
+temp=a[i+1];
+a[i+1]=a[u];
+a[u]=temp;
+return(i+1);
+}
+void qs(int a[],int l,int u)
+{
+int j;
+if(l<u)
+{
+j=partition(a,l,u);
+qs(a,l,j-1);
+qs(a,j+1,u);
+}
+}
+
+void main()
+{
+clock_t start,end;
+double totaltime;
+start=clock();
+int a[200000],n,i,r;
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+//r=rand();
+//a[i]=r;
+}
+qs(a,0,n-1);
+for(i=0;i<n;i++)
+{
+printf("%d",a[i]);
+}
+end=clock();
+totaltime=(double)(end-start)/CLOCKS_PER_SEC;
+printf("time taken is %lf",totaltime);
+}
